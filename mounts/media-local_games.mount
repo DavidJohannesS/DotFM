@@ -1,0 +1,17 @@
+[Unit]
+Description=Mount SSD /media/local_games
+After=network-online.target
+Conflicts=umount.target
+Before=local-fs.target umount.target
+Wants=network-online.target
+ExecStartPre=/bin/sleep 5
+
+[Mount]
+What=/dev/disk/by-uuid/dc308970-cee1-4914-8a5e-78a1488c32ab
+Where="/media/local_games"
+Type=ext4
+Options=defaults
+
+[Install]
+WantedBy=multi-user.target
+
