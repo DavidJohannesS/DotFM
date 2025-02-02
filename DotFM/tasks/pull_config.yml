@@ -1,0 +1,30 @@
+---
+
+- name: Create symlinks for config files
+  ansible.builtin.file:
+    src: "{{ link.src }}"
+    dest: "{{ link.dest }}"
+    state: link
+    force: true
+  with_items: "{{ branch_dirs }}"
+  with_nested:
+    - "{{ item.links }}"
+  loop_control:
+    label: "{{ item.branch_dir }} -> {{ link.dest }}"
+
+- name: Check if .git directory exists in worktree
+  ansible.builtin.stat:
+    path: "{{ worktree_path }}/{{ item.branch_dir }}/.git"
+  register: config_branch
+  with_items: "{{ branch_dirs }}"
+
+- name: Add worktree if .git does not exist
+  ansible.builtin.command:
+    cmd: git worktree add "{{ worktree_path }}/{{ item.branch_dir }}" "{{ item.branch_dir }}"
+    chdir: "{{ repo_path }}"
+  when: not config_branch.results[item_index].stat.exists
+  with_items: "{{ branch_dirs }}"
+  loop_control:
+    index_var: item_index
+    label: "{{ worktree_path }}/{{ item.branch_dir }}"
+  tags: skip_ansible_lint

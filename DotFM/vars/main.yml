@@ -1,0 +1,75 @@
+---
+repo_path: "/home/meow/CONFIG/DotFM"
+worktree_path: "{{ repo_path }}/apps"
+repo_url: "ssh://git@192.168.0.7:2222/meow/DotFM.git"
+ansible_user_dir: "/home/{{ ansible_user }}"
+branch_dirs:
+  - branch_dir: "systemd"
+    links:
+      - src: "{{ worktree_path }}/systemd/mounts/media-cloud.mount"
+        dest: "/etc/systemd/system/media-cloud.mount"
+      - src: "{{ worktree_path }}/systemd/mounts/media-dev.mount"
+        dest: "/etc/systemd/system/media-dev.mount"
+      - src: "{{ worktree_path }}/systemd/mounts/media-local_games.mount"
+        dest: "/etc/systemd/system/media-local_games.mount"
+      - src: "{{ worktree_path }}/systemd/mounts/media-media.mount"
+        dest: "/etc/systemd/system/media-media.mount"
+      - src: "{{ worktree_path }}/systemd/mounts/media-vault.mount"
+        dest: "/etc/systemd/system/media-vault.mount"
+
+  - branch_dir: "polybar"
+    links:
+      - src: "{{ worktree_path }}/polybar/polybar"
+        dest: "{{ ansible_user_dir }}/.config/polybar"
+
+  - branch_dir: "dunst"
+    links:
+      - src: "{{ worktree_path }}/dunst/dunstrc"
+        dest: "{{ ansible_user_dir }}/.config/dunst/dunstrc"
+
+  - branch_dir: "neovim"
+    links:
+      - src: "{{ worktree_path }}/neovim/nvim"
+        dest: "{{ ansible_user_dir }}/.config/nvim"
+
+  - branch_dir: "shell"
+    links:
+      - src: "{{ worktree_path }}/shell/bash/.bashrc"
+        dest: "{{ ansible_user_dir }}/.bashrc"
+      - src: "{{ worktree_path }}/shell/bash/.bash_aliases"
+        dest: "{{ ansible_user_dir }}/.bash_aliases"
+
+  - branch_dir: "i3"
+    links:
+      - src: "{{ worktree_path }}/i3/config"
+        dest: "{{ ansible_user_dir }}/.config/i3/config"
+
+  - branch_dir: "lightdm"
+    links:
+      - src: "{{ worktree_path }}/lightdm/lightdm-gtk-greeter.conf"
+        dest: "/etc/lightdm/lightdm-gtk-greeter.conf"
+
+  - branch_dir: "fonts"
+    links:
+      - src: "{{ worktree_path }}/fonts/FiraCode-Bold.ttf"
+        dest: "/usr/share/fonts/FiraCode-Bold.ttf"
+
+  - branch_dir: "picom"
+    links:
+      - src: "{{ worktree_path }}/picom/picom.conf"
+        dest: "{{ ansible_user_dir }}/.config/picom.conf"
+
+  - branch_dir: "tools"
+    links:
+      - src: "{{ worktree_path }}/tools"
+        dest: "{{ ansible_user_dir }}/tools"
+
+  - branch_dir: "tmux"
+    links:
+      - src: "{{ worktree_path }}/tmux/tmux.conf"
+        dest: "{{ ansible_user_dir }}/.tmux.conf"
+
+  - branch_dir: "rofi"
+    links:
+      - src: "{{ worktree_path }}/rofi/rose-pine.rasi"
+        dest: "{{ ansible_user_dir }}/.config/rofi/rose-pine.rasi"

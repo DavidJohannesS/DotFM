@@ -1,0 +1,6 @@
+---
+# tasks file for DotFM
+- name: Setup DotFM
+  ansible.builtin.include_tasks: setup.yml
+- name: push
+  ansible.builtin.include_tasks: push_configs.yml
