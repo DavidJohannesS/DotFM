@@ -67,7 +67,7 @@ branch_dirs:
 
   - branch_dir: "tmux"
     links:
-      - src: "{{ worktree_path }}/tmux/tmux.conf"
+      - src: "{{ worktree_path }}/tmux/.tmux.conf"
         dest: "{{ ansible_user_dir }}/.tmux.conf"
 
   - branch_dir: "rofi"
