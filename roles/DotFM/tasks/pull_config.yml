@@ -1,0 +1,15 @@
+---
+- name: Create symlinks for config files
+  ansible.builtin.file:
+    src: "{{ item.1.src }}"
+    dest: "{{ item.1.dest }}"
+    state: link
+    force: true
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: "0755"
+  loop: "{{ branch_dirs | subelements('links') }}"
+  loop_control:
+    label: "{{ item.0.branch_dir }} -> {{ item.1.dest }}"
+  become: true
+

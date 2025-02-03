@@ -1,0 +1,6 @@
+---
+- name: DotFileManager
+  hosts: localhost
+  connection: localhost
+  roles:
+    - DotFM
