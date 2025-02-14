@@ -16,8 +16,8 @@ alias ....='cd ../../..'
 alias .....='cd ../../../..'
 alias openports='netstat -nape --inet'
 alias dir='du -h --max-depth=1'
-alias untar='~/tools/helper-scripts/untar.sh'
-alias gcp="~/tools/helper-scripts/gcp.sh"
+alias untar='~/tools/untar.sh'
+alias gcp="~/tools/gcp.sh"
 alias lt="tree -L 1"
 
 # Function to check if a session exists and is attached
@@ -83,6 +83,6 @@ alias tmux-ka="tmux ls | cut -d: -f1 | xargs -n 1 tmux kill-session -t"
 alias tmux-ks='function _tmux_kill_sessions(){ for session in "$@"; do tmux kill-session -t "$session"; done }; _tmux_kill_sessions'
 [[ -s /usr/share/autojump/autojump.sh ]] && source /usr/share/autojump/autojump.sh
 alias update="sudo nala update && sudo nala upgrade -y"
-alias mkc='~/tools/helper-scripts/mkc.sh'
-alias mkj='~/tools/helper-scripts/mkj.sh'
+alias mkc='~/tools/mkc.sh'
+alias mkj='~/tools/mkj.sh'
 alias hidden='ls -Adl .*'

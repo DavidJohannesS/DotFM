@@ -56,25 +56,65 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 
-
-# Function to get the current Git branch
+# Function to get the current git branch
 function parse_git_branch {
-    git symbolic-ref --short HEAD 2>/dev/null
+  git symbolic-ref --short HEAD 2>/dev/null
 }
 
 # Function to get the current Kubernetes context
 function parse_kube_context {
-    kubectl config current-context 2>/dev/null
+    local context=$(kubectl config current-context 2>/dev/null)
+  if [ -n "$context" ]; then
+    # Check if the cluster is online
+    kubectl cluster-info &> /dev/null
+    if [ $? -eq 0 ]; then
+      echo "$context"
+    fi
+  fi
+}
+function get_branches()
+{
+    local context=$(git branch -a | paste -sd ' ' - 2>/dev/null)
+       echo "$context" 
+}
+# Function to set the prompt
+function set_prompt {
+  # Start building the prompt
+  PS1='${debian_chroot:+($debian_chroot)}'
+
+  # Arrow symbol in blue
+  PS1+='\[\033[38;5;153m\]→ '
+
+  # Full path in white
+  PS1+='\[\033[38;5;15m\]\w 
+  '
+
+
+  # Second flower - Kubernetes context
+  if [ -n "$(parse_kube_context)" ]; then
+    # Connected to a cluster - yellow flower with context name
+    PS1+='\[\033[38;5;226m\] ❀ ' # Yellow flower
+    PS1+='\[\033[38;5;225m\]$(parse_kube_context) 
+    '
+  else
+    # Not connected to a cluster - blue flower
+    PS1+='\[\033[38;5;153m\] ❀ '
+  fi
+
+  # First flower - determine the color based on git status
+  if git rev-parse --show-toplevel > /dev/null 2>&1; then
+      # We're inside a Git repository - green flower with branch name
+      PS1+='\[\033[38;5;82m\]❀ ($(parse_git_branch)) '
+  else
+      # Not in a git repo - blue flower
+      PS1+='\[\033[38;5;153m\]❀ '
+  fi
+  # Reset color
+  PS1+='\[\033[00m\]'
 }
 
-# Set a colored prompt with the specified colors
-
-if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[38;5;153m\]→ \[\033[38;5;15m\]\W\[\033[38;5;214m\]\[\033[38;5;15m\]\[\033[38;5;225m\]\[\033[38;5;153m\] ❀ ($(parse_git_branch)) ❀ \[\033[38;5;225m\]$(parse_kube_context)\[\033[00m\] '
-else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w($(parse_git_branch))[$ (parse_kube_context)]\$ '
-fi
-
+# Set the PROMPT_COMMAND to call the set_prompt function
+PROMPT_COMMAND=set_prompt
 
 
 
@@ -126,3 +166,11 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+# Add JBang to environment
+alias j!=jbang
+export PATH="$HOME/.jbang/bin:$PATH"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
