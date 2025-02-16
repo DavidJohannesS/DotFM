@@ -1,8 +1,9 @@
 ---
 ansible_user: "meow"
 repo_path: "/home/meow/CONFIG/DotFM"
+git_remote: "github"
 worktree_path: "{{ repo_path }}/apps"
-repo_url: "ssh://git@192.168.0.7:2222/meow/DotFM.git"
+repo_url: "git@github.com:DavidJohannesS/DotFM.git"
 ansible_user_dir: "/home/{{ ansible_user }}"
 branch_dirs:
   - branch_dir: "systemd"

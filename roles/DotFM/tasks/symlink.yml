@@ -12,4 +12,3 @@
   loop_control:
     label: "{{ item.0.branch_dir }} -> {{ item.1.dest }}"
   become: true
-

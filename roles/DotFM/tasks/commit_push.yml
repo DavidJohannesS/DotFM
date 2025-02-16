@@ -1,0 +1,28 @@
+---
+# Do not remove ansible lint suppression if not used manually
+- name: Commit & Push all branches
+  tags:
+    - commit_push_all_branches
+  block:
+    - name: Commit changes in worktree
+      ansible.builtin.shell: |
+        git add . &&
+        git commit -m "DotFM Update"
+      args:
+        chdir: "{{ worktree_path }}/{{ item.branch_dir }}"
+      with_items: "{{ branch_dirs }}"
+      ignore_errors: true
+      loop_control:
+        label: "{{ worktree_path }}/{{ item.branch_dir }}"
+      tags:
+        - skip_ansible_lint
+
+    - name: Push changes to remote
+      ansible.builtin.command:
+        cmd: git push "{{ git_remote }}" "{{ item.branch_dir }}"
+        chdir: "{{ worktree_path }}/{{ item.branch_dir }}"
+      with_items: "{{ branch_dirs }}"
+      loop_control:
+        label: "{{ worktree_path }}/{{ item.branch_dir }}"
+      tags:
+        - skip_ansible_lint
