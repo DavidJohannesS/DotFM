@@ -1,8 +1,16 @@
 ---
 # tasks file for DotFM
-#- name: Setup DotFM
-#  ansible.builtin.include_tasks: setup.yml
-#- name: push
-#  ansible.builtin.include_tasks: push_configs.yml
-- name: pull
-  ansible.builtin.include_tasks: pull_config.yml
+- name: Setup DotFM
+  ansible.builtin.include_tasks: setup.yml
+
+- name: Link files
+  ansible.builtin.include_tasks: symlink.yml
+
+
+### ---------------------------------- ###
+# Utility
+- name: Push to git
+  ansible.builtin.include_tasks: commit_push.yml
+  tags:
+    - never
+    - commit_push_all_branches
