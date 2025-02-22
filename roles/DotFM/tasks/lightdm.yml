@@ -1,0 +1,30 @@
+---
+- name: Configure Lightdm
+  tags:
+    - lightdm
+  block:
+
+    - name: Ensure config file
+      ansible.builtin.file:
+        path: /etc/lightdm/lightdm-gtk-greeter.conf
+        state: touch
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
+        mode: '0644'
+      become: true
+
+    - name: Set background color in lightdm-gtk-greeter.conf
+      ansible.builtin.lineinfile:
+        path: /etc/lightdm/lightdm-gtk-greeter.conf
+        regexp: '^background='
+        line: 'background=#3D3846'
+        state: present
+      become: true
+
+    - name: Set theme in lightdm-gtk-greeter.conf
+      ansible.builtin.lineinfile:
+        path: /etc/lightdm/lightdm-gtk-greeter.conf
+        regexp: '^theme-name='
+        line: 'theme-name=Adwaita-dark'
+        state: present
+      become: true

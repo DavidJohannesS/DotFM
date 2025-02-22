@@ -6,11 +6,18 @@
 - name: Link files
   ansible.builtin.include_tasks: symlink.yml
 
-
+- name: Setup Lightdm
+  ansible.builtin.include_tasks: lightdm.yml
 ### ---------------------------------- ###
 # Utility
 - name: Push to git
   ansible.builtin.include_tasks: commit_push.yml
   tags:
     - never
-    - commit_push_all_branches
+    - gcp
+
+- name: Enable unit files
+  ansible.builtin.include_tasks: link-sysdunit.yml
+  tags:
+    - never
+    - sysd

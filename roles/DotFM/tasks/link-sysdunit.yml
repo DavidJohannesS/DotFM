@@ -1,0 +1,39 @@
+---
+- name: Enable All Systemd Unit files
+  tags:
+    - sysd
+  block:
+    - name: Enable Cloud
+      ansible.builtin.systemd:
+        name: media-cloud.mount
+        enabled: true
+        state: started
+      become: true
+
+    - name: Enable Dev
+      ansible.builtin.systemd:
+        name: media-dev.mount
+        enabled: true
+        state: started
+      become: true
+
+    - name: Enable jellyfin data dir
+      ansible.builtin.systemd:
+        name: media-media.mount
+        enabled: true
+        state: started
+      become: true
+
+    - name: Enable Backup Vault
+      ansible.builtin.systemd:
+        name: media-vault.mount
+        enabled: true
+        state: started
+      become: true
+
+    - name: Enable Steam SSD
+      ansible.builtin.systemd:
+        name: media-local_games.mount
+        enabled: true
+        state: started
+      become: true

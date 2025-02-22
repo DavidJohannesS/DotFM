@@ -46,11 +46,6 @@ branch_dirs:
       - src: "{{ worktree_path }}/i3/config"
         dest: "{{ ansible_user_dir }}/.config/i3/config"
 
-  - branch_dir: "lightdm"
-    links:
-      - src: "{{ worktree_path }}/lightdm/lightdm-gtk-greeter.conf"
-        dest: "/etc/lightdm/lightdm-gtk-greeter.conf"
-
   - branch_dir: "fonts"
     links:
       - src: "{{ worktree_path }}/fonts/FiraCode-Bold.ttf"
