@@ -223,8 +223,9 @@ bindsym Mod1+Shift+W exec --no-startup-id ~/.config/polybar/toggle_ws.sh
 bindsym Mod1+p exec --no-startup-id ~/tools/poly-ws.sh
 exec --no-startup-id flameshot
 #exec --no-startup-id pasystray
-exec --no-startup-id picom
+exec_always --no-startup-id picom --config ~/.config/picom/picom.conf
 bindsym Mod1+Tab exec --no-startup-id rofi -show window 
+exec --no-startup-id ~/tools/feh.sh
 bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # Define a keybinding to launch the Polybar script with the active display
 bindsym Mod1+t exec --no-startup-id ~/tools/poly.sh
