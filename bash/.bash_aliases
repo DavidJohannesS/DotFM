@@ -1,25 +1,66 @@
 export PATH="/usr/bin/python3:$PATH"
-export KUBECONFIG=/home/$USER/.kube/config
 export PATH=$HOME/local/bin:$PATH
-export PROMPT_COMMAND="history -a; history -n; $PROMPT_COMMAND"
+export KUBECONFIG=$HOME/.kube/config
 export EDITOR=vim
 export VISUAL=vim
 eval "$(zoxide init bash)"
 alias getcmd='cat /home/$USER/.bash_history | grep'
-alias ll='ls -lahs'
-
+#--------------------------------------------------------------------------------------------JAVA
+#---------------------------------------------------------------------JBANG
+alias j!=jbang
+export PATH="$HOME/.jbang/bin:$PATH"
+#---------------------------------------------------------------------SDKMAN
+export JAVA_HOME="$SDKMAN_DIR/candidates/java/current"
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+#--------------------------------------------------------------------------------------------JAVA END
+#--------------------------------------------------NAVIGATION
+alias ll='ls -lahs --color=auto'
 alias home='cd ~'
+alias dir='du -h --max-depth=1'
+alias lt="tree -L 1"
+alias la='ls -lh' 
+alias hidden='ls -Adl .*'
+
 alias cd..='cd ..'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
-alias openports='netstat -nape --inet'
-alias dir='du -h --max-depth=1'
 alias untar='~/tools/untar.sh'
-alias gcp="~/tools/gcp.sh"
-alias lt="tree -L 1"
+#-------------------------------------------NETWORK UTILS
+alias openports='netstat -nape --inet'
+alias resolv='cat /etc/resolv.conf'
+#------------------------------------------GIT ALIASES
+alias ggaa='git add .'
+alias gga='git add'
+alias ggs='git status'
+alias ggc='git commit -m'
+alias ggr='git remote -v'
+alias pp='git remote -v && git branch -a'
+alias ggb='git branch -a'
+alias ggp='git push'
+#-------------------------------------------------------SYSTEM UTILS
 
+alias tray='pstree -AcuT $USER'
+alias update="sudo nala update && sudo nala upgrade -y"
+
+#--------------------------------------------------APPLICATION SHORTCUTS
+alias kc='kubectl'
+alias ap='ansible-playbook'
+alias ag='ansible-galaxy'
+#---------------------------Create project with nice-to-have dependencies
+alias mkc='~/tools/mkc.sh'
+alias mkj='~/tools/mkj.sh'
+
+###################################################################################
+##################  TMUX SETUP #######################
+#----------------------------------------------------#
+#ensure cmd history gets tracked
+export PROMPT_COMMAND="history -a; history -n; $PROMPT_COMMAND"
+#clean tmux sessions
+alias tmux-ka="tmux ls | cut -d: -f1 | xargs -n 1 tmux kill-session -t"
+alias tmux-ks='function _tmux_kill_sessions(){ for session in "$@"; do tmux kill-session -t "$session"; done }; _tmux_kill_sessions'
 # Function to check if a session exists and is attached
 is_attached() {
   local session_name="$1"
@@ -74,15 +115,6 @@ if [ -z "$TMUX" ]; then
   fi
 fi
 tmux source ~/.tmux.conf
-alias la='ls -lh' 
-alias kc='kubectl'
-alias ap='ansible-playbook'
-alias ag='ansible-galaxy'
-alias tray='pstree -AcuT $USER'
-alias tmux-ka="tmux ls | cut -d: -f1 | xargs -n 1 tmux kill-session -t"
-alias tmux-ks='function _tmux_kill_sessions(){ for session in "$@"; do tmux kill-session -t "$session"; done }; _tmux_kill_sessions'
-[[ -s /usr/share/autojump/autojump.sh ]] && source /usr/share/autojump/autojump.sh
-alias update="sudo nala update && sudo nala upgrade -y"
-alias mkc='~/tools/mkc.sh'
-alias mkj='~/tools/mkj.sh'
-alias hidden='ls -Adl .*'
+#--------------------------------------------------------#
+###################  TMUX CONFIG END #####################
+#########################################################################
