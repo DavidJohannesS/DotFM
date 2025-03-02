@@ -11,6 +11,7 @@
         owner: root
         group: root
         mode: '0644'
+        modification_time: preserve
       become: true
 
     - name: Ensure [greeter] section

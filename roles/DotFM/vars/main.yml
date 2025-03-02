@@ -1,73 +1,95 @@
 ---
 ansible_user: "meow"
 ansible_user_dir: "/home/{{ ansible_user }}"
-config_base_path: "/gitrepos/OS-SETUP-FINAL/config/"
-
+config_base_path: "/gitrepos/OS-SETUP-FINAL/config"
+git_branch: "meow"
 repos:
+  - name: "dunst"
+    repo_url: "https://github.com/DavidJohannesS/dunst"
+    git_remote: "github"
+    config_item_path: "{{ ansible_user_dir }}/.config/dunst"
+    links:
+      - src: "{{ config_base_path }}/dunst/dunstrc"
+        dest: "{{ ansible_user_dir }}/.config/dunst/dunstrc"
+
   - name: "bash"
     repo_url: "https://github.com/DavidJohannesS/bash"
+    git_remote: "github"
+    config_item_path: ""
     links:
       - src: "{{ config_base_path }}/bash/.bashrc"
         dest: "{{ ansible_user_dir }}/.bashrc"
       - src: "{{ config_base_path }}/bash/.bash_aliases"
         dest: "{{ ansible_user_dir }}/.bash_aliases"
 
-  - name: "dunst"
-    repo_url: "https://github.com/DavidJohannesS/dunst"
-    links:
-      - src: "{{ config_base_path }}/dunst/dunstrc"
-        dest: "{{ ansible_user_dir }}/.config/dunst/dunstrc"
-
   - name: "fonts"
     repo_url: "https://github.com/DavidJohannesS/fonts"
+    git_remote: "github"
+    config_item_path: "/usr/share/fonts"
     links:
       - src: "{{ config_base_path }}/fonts/FiraCode-Bold.ttf"
         dest: "/usr/share/fonts/FiraCode-Bold.ttf"
 
   - name: "git"
     repo_url: "https://github.com/DavidJohannesS/git"
+    git_remote: "github"
+    config_item_path: ""
     links:
       - src: "{{ config_base_path }}/git/.gitconfig"
         dest: "{{ ansible_user_dir }}/.gitconfig"
 
   - name: "i3"
     repo_url: "https://github.com/DavidJohannesS/i3"
+    git_remote: "github"
+    config_item_path: "{{ ansible_user_dir }}/.config/i3"
     links:
       - src: "{{ config_base_path }}/i3/config"
         dest: "{{ ansible_user_dir }}/.config/i3/config"
 
   - name: "nvim"
     repo_url: "https://github.com/DavidJohannesS/nvim"
+    git_remote: "github"
+    config_item_path: ""
     links:
       - src: "{{ config_base_path }}/nvim/nvim"
         dest: "{{ ansible_user_dir }}/.config/nvim"
 
   - name: "picom"
     repo_url: "https://github.com/DavidJohannesS/picom"
+    git_remote: "github"
+    config_item_path: "{{ ansible_user_dir }}/.config/picom"
     links:
       - src: "{{ config_base_path }}/picom/picom.conf"
-        dest: "{{ ansible_user_dir }}/.config/picom.conf"
+        dest: "{{ ansible_user_dir }}/.config/picom/picom.conf"
 
   - name: "polybar"
     repo_url: "https://github.com/DavidJohannesS/polybar"
+    git_remote: "github"
+    config_item_path: "{{ ansible_user_dir }}/.config/polybar"
     links:
       - src: "{{ config_base_path }}/polybar/polybar"
         dest: "{{ ansible_user_dir }}/.config/polybar"
 
   - name: "rofi"
     repo_url: "https://github.com/DavidJohannesS/rofi"
+    git_remote: "github"
+    config_item_path: "{{ ansible_user_dir }}/.config/rofi"
     links:
       - src: "{{ config_base_path }}/rofi/rose-pine.rasi"
         dest: "{{ ansible_user_dir }}/.config/rofi/config.rasi"
 
   - name: "tmux"
     repo_url: "https://github.com/DavidJohannesS/tmux"
+    git_remote: "github"
+    config_item_path: ""
     links:
       - src: "{{ config_base_path }}/tmux/.tmux.conf"
         dest: "{{ ansible_user_dir }}/.tmux.conf"
 
   - name: "tools"
     repo_url: "https://github.com/DavidJohannesS/tools"
+    git_remote: "github"
+    config_item_path: ""
     links:
       - src: "{{ config_base_path }}/tools/tools"
         dest: "{{ ansible_user_dir }}/tools"
