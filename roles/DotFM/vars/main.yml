@@ -5,7 +5,7 @@ config_base_path: "/gitrepos/OS-SETUP-FINAL/config/"
 
 repos:
   - name: "bash"
-    repo_url: "git@github.com:DavidJohannesS/bash.git"
+    repo_url: "https://github.com/DavidJohannesS/bash"
     links:
       - src: "{{ config_base_path }}/bash/.bashrc"
         dest: "{{ ansible_user_dir }}/.bashrc"
@@ -13,61 +13,61 @@ repos:
         dest: "{{ ansible_user_dir }}/.bash_aliases"
 
   - name: "dunst"
-    repo_url: "git@github.com:DavidJohannesS/dunst.git"
+    repo_url: "https://github.com/DavidJohannesS/dunst"
     links:
       - src: "{{ config_base_path }}/dunst/dunstrc"
         dest: "{{ ansible_user_dir }}/.config/dunst/dunstrc"
 
   - name: "fonts"
-    repo_url: "git@github.com:DavidJohannesS/fonts.git"
+    repo_url: "https://github.com/DavidJohannesS/fonts"
     links:
       - src: "{{ config_base_path }}/fonts/FiraCode-Bold.ttf"
         dest: "/usr/share/fonts/FiraCode-Bold.ttf"
 
   - name: "git"
-    repo_url: "git@github.com:DavidJohannesS/git.git"
+    repo_url: "https://github.com/DavidJohannesS/git"
     links:
       - src: "{{ config_base_path }}/git/.gitconfig"
         dest: "{{ ansible_user_dir }}/.gitconfig"
 
   - name: "i3"
-    repo_url: "git@github.com:DavidJohannesS/i3.git"
+    repo_url: "https://github.com/DavidJohannesS/i3"
     links:
       - src: "{{ config_base_path }}/i3/config"
         dest: "{{ ansible_user_dir }}/.config/i3/config"
 
   - name: "nvim"
-    repo_url: "git@github.com:DavidJohannesS/nvim.git"
+    repo_url: "https://github.com/DavidJohannesS/nvim"
     links:
       - src: "{{ config_base_path }}/nvim/nvim"
         dest: "{{ ansible_user_dir }}/.config/nvim"
 
   - name: "picom"
-    repo_url: "git@github.com:DavidJohannesS/picom.git"
+    repo_url: "https://github.com/DavidJohannesS/picom"
     links:
       - src: "{{ config_base_path }}/picom/picom.conf"
         dest: "{{ ansible_user_dir }}/.config/picom.conf"
 
   - name: "polybar"
-    repo_url: "git@github.com:DavidJohannesS/polybar.git"
+    repo_url: "https://github.com/DavidJohannesS/polybar"
     links:
       - src: "{{ config_base_path }}/polybar/polybar"
         dest: "{{ ansible_user_dir }}/.config/polybar"
 
   - name: "rofi"
-    repo_url: "git@github.com:DavidJohannesS/rofi.git"
+    repo_url: "https://github.com/DavidJohannesS/rofi"
     links:
       - src: "{{ config_base_path }}/rofi/rose-pine.rasi"
         dest: "{{ ansible_user_dir }}/.config/rofi/config.rasi"
 
   - name: "tmux"
-    repo_url: "git@github.com:DavidJohannesS/tmux.git"
+    repo_url: "https://github.com/DavidJohannesS/tmux"
     links:
       - src: "{{ config_base_path }}/tmux/.tmux.conf"
         dest: "{{ ansible_user_dir }}/.tmux.conf"
 
   - name: "tools"
-    repo_url: "git@github.com:DavidJohannesS/tools.git"
+    repo_url: "https://github.com/DavidJohannesS/tools"
     links:
       - src: "{{ config_base_path }}/tools/tools"
         dest: "{{ ansible_user_dir }}/tools"
