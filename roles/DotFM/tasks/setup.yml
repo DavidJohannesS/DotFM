@@ -1,46 +1,26 @@
 ---
 - name: Ensure CONFIG dir exists
   ansible.builtin.file:
-    path: "{{ repo_path }}"
+    path: "{{ config_base_path }}"
     state: directory
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: '0755'
 
-- name: Check if .git exits
+- name: Check if repo dir exists
   ansible.builtin.stat:
-    path: "{{ repo_path }}/refs"
-  register: git_dir
+    path: "{{ config_base_path }}/{{ item.name }}/.git"
+  register: repo_dir
+  with_items: "{{ repos }}"
 
-- name: Pull DotFM
+- name: Clone repositories
   ansible.builtin.git:
-    repo: '{{ repo_url }}'
-    dest: '{{ repo_path }}'
-    bare: true
-  when: not git_dir.stat.exists
-  tags: skip_ansible_lint
-
-- name: Ensure apps dir exists
-  ansible.builtin.file:
-    path: "{{ worktree_path }}"
-    state: directory
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
-    mode: '0755'
-
-- name: Check if .git directory exists in worktree
-  ansible.builtin.stat:
-    path: "{{ worktree_path }}/{{ item.branch_dir }}/.git"
-  register: config_branch
-  with_items: "{{ branch_dirs }}"
-
-- name: Add worktree if .git does not exist
-  ansible.builtin.command:
-    cmd: git worktree add "{{ worktree_path }}/{{ item.branch_dir }}" "{{ item.branch_dir }}"
-    chdir: "{{ repo_path }}"
-  when: not config_branch.results[item_index].stat.exists
-  with_items: "{{ branch_dirs }}"
+    repo: "{{ item.repo_url }}"
+    dest: "{{ config_base_path }}/{{ item.name }}"
+    update: true
+  when: not repo_dir.results[item_index].stat.exists
+  with_items: "{{ repos }}"
   loop_control:
     index_var: item_index
-    label: "{{ worktree_path }}/{{ item.branch_dir }}"
+    label: "{{ config_base_path }}/{{ item.name }}"
   tags: skip_ansible_lint

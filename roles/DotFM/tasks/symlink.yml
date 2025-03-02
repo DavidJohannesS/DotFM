@@ -8,7 +8,7 @@
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: "0755"
-  loop: "{{ branch_dirs | subelements('links') }}"
+  loop: "{{ repos | subelements('links') }}"
   loop_control:
-    label: "{{ item.0.branch_dir }} -> {{ item.1.dest }}"
+    label: "{{ item.0.name }} -> {{ item.1.dest }}"
   become: true

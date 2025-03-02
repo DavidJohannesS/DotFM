@@ -8,14 +8,23 @@
       ansible.builtin.file:
         path: /etc/lightdm/lightdm-gtk-greeter.conf
         state: touch
-        owner: "{{ ansible_user }}"
-        group: "{{ ansible_user }}"
+        owner: root
+        group: root
         mode: '0644'
+      become: true
+
+    - name: Ensure [greeter] section
+      ansible.builtin.lineinfile:
+        path: /etc/lightdm/lightdm-gtk-greeter.conf
+        line: '[greeter]'
+        insertafter: '^$'
+        state: present
       become: true
 
     - name: Set background color in lightdm-gtk-greeter.conf
       ansible.builtin.lineinfile:
         path: /etc/lightdm/lightdm-gtk-greeter.conf
+        insertafter: '^[greeter]'
         regexp: '^background='
         line: 'background=#3D3846'
         state: present
@@ -24,6 +33,7 @@
     - name: Set theme in lightdm-gtk-greeter.conf
       ansible.builtin.lineinfile:
         path: /etc/lightdm/lightdm-gtk-greeter.conf
+        insertafter: '^background='
         regexp: '^theme-name='
         line: 'theme-name=Adwaita-dark'
         state: present

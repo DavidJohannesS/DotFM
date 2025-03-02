@@ -1,72 +1,73 @@
 ---
 ansible_user: "meow"
-repo_path: "/home/meow/CONFIG/DotFM"
-git_remote: "github"
-worktree_path: "{{ repo_path }}/apps"
-repo_url: "git@github.com:DavidJohannesS/DotFM.git"
 ansible_user_dir: "/home/{{ ansible_user }}"
-branch_dirs:
-  - branch_dir: "systemd"
-    links:
-      - src: "{{ worktree_path }}/systemd/mounts/media-cloud.mount"
-        dest: "/etc/systemd/system/media-cloud.mount"
-      - src: "{{ worktree_path }}/systemd/mounts/media-dev.mount"
-        dest: "/etc/systemd/system/media-dev.mount"
-      - src: "{{ worktree_path }}/systemd/mounts/media-local_games.mount"
-        dest: "/etc/systemd/system/media-local_games.mount"
-      - src: "{{ worktree_path }}/systemd/mounts/media-media.mount"
-        dest: "/etc/systemd/system/media-media.mount"
-      - src: "{{ worktree_path }}/systemd/mounts/media-vault.mount"
-        dest: "/etc/systemd/system/media-vault.mount"
+config_base_path: "/gitrepos/OS-SETUP-FINAL/config/"
 
-  - branch_dir: "polybar"
+repos:
+  - name: "bash"
+    repo_url: "git@github.com:DavidJohannesS/bash.git"
     links:
-      - src: "{{ worktree_path }}/polybar/polybar"
-        dest: "{{ ansible_user_dir }}/.config/polybar"
-
-  - branch_dir: "dunst"
-    links:
-      - src: "{{ worktree_path }}/dunst/dunstrc"
-        dest: "{{ ansible_user_dir }}/.config/dunst/dunstrc"
-
-  - branch_dir: "neovim"
-    links:
-      - src: "{{ worktree_path }}/neovim/nvim"
-        dest: "{{ ansible_user_dir }}/.config/nvim"
-
-  - branch_dir: "shell"
-    links:
-      - src: "{{ worktree_path }}/shell/bash/.bashrc"
+      - src: "{{ config_base_path }}/bash/.bashrc"
         dest: "{{ ansible_user_dir }}/.bashrc"
-      - src: "{{ worktree_path }}/shell/bash/.bash_aliases"
+      - src: "{{ config_base_path }}/bash/.bash_aliases"
         dest: "{{ ansible_user_dir }}/.bash_aliases"
 
-  - branch_dir: "i3"
+  - name: "dunst"
+    repo_url: "git@github.com:DavidJohannesS/dunst.git"
     links:
-      - src: "{{ worktree_path }}/i3/config"
-        dest: "{{ ansible_user_dir }}/.config/i3/config"
+      - src: "{{ config_base_path }}/dunst/dunstrc"
+        dest: "{{ ansible_user_dir }}/.config/dunst/dunstrc"
 
-  - branch_dir: "fonts"
+  - name: "fonts"
+    repo_url: "git@github.com:DavidJohannesS/fonts.git"
     links:
-      - src: "{{ worktree_path }}/fonts/FiraCode-Bold.ttf"
+      - src: "{{ config_base_path }}/fonts/FiraCode-Bold.ttf"
         dest: "/usr/share/fonts/FiraCode-Bold.ttf"
 
-  - branch_dir: "picom"
+  - name: "git"
+    repo_url: "git@github.com:DavidJohannesS/git.git"
     links:
-      - src: "{{ worktree_path }}/picom/picom.conf"
+      - src: "{{ config_base_path }}/git/.gitconfig"
+        dest: "{{ ansible_user_dir }}/.gitconfig"
+
+  - name: "i3"
+    repo_url: "git@github.com:DavidJohannesS/i3.git"
+    links:
+      - src: "{{ config_base_path }}/i3/config"
+        dest: "{{ ansible_user_dir }}/.config/i3/config"
+
+  - name: "nvim"
+    repo_url: "git@github.com:DavidJohannesS/nvim.git"
+    links:
+      - src: "{{ config_base_path }}/nvim/nvim"
+        dest: "{{ ansible_user_dir }}/.config/nvim"
+
+  - name: "picom"
+    repo_url: "git@github.com:DavidJohannesS/picom.git"
+    links:
+      - src: "{{ config_base_path }}/picom/picom.conf"
         dest: "{{ ansible_user_dir }}/.config/picom.conf"
 
-  - branch_dir: "tools"
+  - name: "polybar"
+    repo_url: "git@github.com:DavidJohannesS/polybar.git"
     links:
-      - src: "{{ worktree_path }}/tools"
-        dest: "{{ ansible_user_dir }}/tools"
+      - src: "{{ config_base_path }}/polybar/polybar"
+        dest: "{{ ansible_user_dir }}/.config/polybar"
 
-  - branch_dir: "tmux"
+  - name: "rofi"
+    repo_url: "git@github.com:DavidJohannesS/rofi.git"
     links:
-      - src: "{{ worktree_path }}/tmux/.tmux.conf"
+      - src: "{{ config_base_path }}/rofi/rose-pine.rasi"
+        dest: "{{ ansible_user_dir }}/.config/rofi/config.rasi"
+
+  - name: "tmux"
+    repo_url: "git@github.com:DavidJohannesS/tmux.git"
+    links:
+      - src: "{{ config_base_path }}/tmux/.tmux.conf"
         dest: "{{ ansible_user_dir }}/.tmux.conf"
 
-  - branch_dir: "rofi"
+  - name: "tools"
+    repo_url: "git@github.com:DavidJohannesS/tools.git"
     links:
-      - src: "{{ worktree_path }}/rofi/rose-pine.rasi"
-        dest: "{{ ansible_user_dir }}/.config/rofi/rose-pine.rasi"
+      - src: "{{ config_base_path }}/tools/tools"
+        dest: "{{ ansible_user_dir }}/tools"
