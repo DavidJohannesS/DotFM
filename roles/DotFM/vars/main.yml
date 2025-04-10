@@ -8,6 +8,7 @@ repos:
     repo_url: "https://github.com/DavidJohannesS/dunst"
     git_remote: "github"
     config_item_path: "{{ ansible_user_dir }}/.config/dunst"
+    branch: "meow"
     links:
       - src: "{{ config_base_path }}/dunst/dunstrc"
         dest: "{{ ansible_user_dir }}/.config/dunst/dunstrc"
@@ -16,6 +17,7 @@ repos:
     repo_url: "https://github.com/DavidJohannesS/bash"
     git_remote: "github"
     config_item_path: ""
+    branch: "meow"
     links:
       - src: "{{ config_base_path }}/bash/.bashrc"
         dest: "{{ ansible_user_dir }}/.bashrc"
@@ -26,6 +28,7 @@ repos:
     repo_url: "https://github.com/DavidJohannesS/fonts"
     git_remote: "github"
     config_item_path: "/usr/share/fonts"
+    branch: "meow"
     links:
       - src: "{{ config_base_path }}/fonts/FiraCode-Bold.ttf"
         dest: "/usr/share/fonts/FiraCode-Bold.ttf"
@@ -34,6 +37,7 @@ repos:
     repo_url: "https://github.com/DavidJohannesS/git"
     git_remote: "github"
     config_item_path: ""
+    branch: "meow"
     links:
       - src: "{{ config_base_path }}/git/.gitconfig"
         dest: "{{ ansible_user_dir }}/.gitconfig"
@@ -42,6 +46,7 @@ repos:
     repo_url: "https://github.com/DavidJohannesS/i3"
     git_remote: "github"
     config_item_path: "{{ ansible_user_dir }}/.config/i3"
+    branch: "meow"
     links:
       - src: "{{ config_base_path }}/i3/config"
         dest: "{{ ansible_user_dir }}/.config/i3/config"
@@ -50,6 +55,7 @@ repos:
     repo_url: "https://github.com/DavidJohannesS/nvim"
     git_remote: "github"
     config_item_path: ""
+    branch: "meow"
     links:
       - src: "{{ config_base_path }}/nvim/nvim"
         dest: "{{ ansible_user_dir }}/.config/nvim"
@@ -58,6 +64,7 @@ repos:
     repo_url: "https://github.com/DavidJohannesS/picom"
     git_remote: "github"
     config_item_path: "{{ ansible_user_dir }}/.config/picom"
+    branch: "meow"
     links:
       - src: "{{ config_base_path }}/picom/picom.conf"
         dest: "{{ ansible_user_dir }}/.config/picom/picom.conf"
@@ -66,6 +73,7 @@ repos:
     repo_url: "https://github.com/DavidJohannesS/polybar"
     git_remote: "github"
     config_item_path: "{{ ansible_user_dir }}/.config/polybar"
+    branch: "meow"
     links:
       - src: "{{ config_base_path }}/polybar/polybar"
         dest: "{{ ansible_user_dir }}/.config/polybar"
@@ -74,6 +82,7 @@ repos:
     repo_url: "https://github.com/DavidJohannesS/rofi"
     git_remote: "github"
     config_item_path: "{{ ansible_user_dir }}/.config/rofi"
+    branch: "meow"
     links:
       - src: "{{ config_base_path }}/rofi/rose-pine.rasi"
         dest: "{{ ansible_user_dir }}/.config/rofi/config.rasi"
@@ -82,6 +91,7 @@ repos:
     repo_url: "https://github.com/DavidJohannesS/tmux"
     git_remote: "github"
     config_item_path: ""
+    branch: "meow"
     links:
       - src: "{{ config_base_path }}/tmux/.tmux.conf"
         dest: "{{ ansible_user_dir }}/.tmux.conf"
@@ -90,6 +100,7 @@ repos:
     repo_url: "https://github.com/DavidJohannesS/tools"
     git_remote: "github"
     config_item_path: ""
+    branch: "meow"
     links:
       - src: "{{ config_base_path }}/tools/tools"
         dest: "{{ ansible_user_dir }}/tools"

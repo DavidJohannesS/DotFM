@@ -30,10 +30,3 @@
         enabled: true
         state: started
       become: true
-
-    - name: Enable Steam SSD
-      ansible.builtin.systemd:
-        name: media-local_games.mount
-        enabled: true
-        state: started
-      become: true

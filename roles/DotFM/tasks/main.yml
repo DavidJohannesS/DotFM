@@ -17,7 +17,12 @@
     - gcp
 
 - name: Enable unit files
-  ansible.builtin.include_tasks: link-sysdunit.yml
+  ansible.builtin.include_tasks: sysdMounts.yml
   tags:
     - never
     - sysd
+- name: Pull latest config
+  ansible.builtin.include_tasks: pull_latest.yml
+  tags:
+    - never
+    - pull

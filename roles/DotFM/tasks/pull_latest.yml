@@ -1,0 +1,16 @@
+---
+- name: Update all Repos
+  tags:
+    - never
+    - pull
+  block:
+    - name: Pull latest config
+      ansible.builtin.git:
+        repo: "{{ item.repo_url }}"
+        dest: "{{ config_base_path }}/{{ item.name }}"
+        remote: "{{ item.git_remote }}"
+        version: "{{ item.branch }}"
+        update: true
+      with_items: "{{ repos }}"
+      loop_control:
+        label: "{{ config_base_path }}/{{ item.name }}"
