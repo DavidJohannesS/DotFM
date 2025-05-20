@@ -1,5 +1,5 @@
 ---
-ansible_user: "meow"
+ansible_user: "david"
 ansible_user_dir: "/home/{{ ansible_user }}"
 config_base_path: "/gitrepos/OS-SETUP-FINAL/config"
 git_branch: "meow"
@@ -32,6 +32,8 @@ repos:
     links:
       - src: "{{ config_base_path }}/fonts/FiraCode-Bold.ttf"
         dest: "/usr/share/fonts/FiraCode-Bold.ttf"
+      - src: "{{ config_base_path }}/fonts/0xProto"
+        dest: "/usr/share/fonts/0xProto"
 
   - name: "git"
     repo_url: "https://github.com/DavidJohannesS/git"
